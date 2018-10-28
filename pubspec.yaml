@@ -8,8 +8,8 @@ environment:
   sdk: ">=2.0.0-dev.28.0 <3.0.0"
 
 dependencies:
-  open_iconic_flutter: ">=0.2.0 <0.3.0"
-  video_player: ">=0.6.0 <0.7.0"
+  open_iconic_flutter: ">=0.3.0"
+  video_player: ">=0.7.0"
   flutter:
     sdk: flutter
 
