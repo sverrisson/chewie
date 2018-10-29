@@ -36,7 +36,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: widget.title,
-      theme: new ThemeData.light().copyWith(
+      theme: new ThemeData.dark().copyWith(
         platform: _platform ?? Theme.of(context).platform,
       ),
       home: new Scaffold(
@@ -49,7 +49,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
               child: new Center(
                 child: new Chewie(
                   _controller,
-                  aspectRatio: 3 / 2,
+                  aspectRatio: 16.0 / 9.0,
                   autoPlay: true,
                   looping: true,
 
