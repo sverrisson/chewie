@@ -76,12 +76,12 @@ class _ChewieDemoState extends State<ChewieDemo> {
                     onPressed: () {
                       setState(() {
                         _controller = new VideoPlayerController.network(
-                          'https://flutter.github.io/assets-for-api-docs/videos/butterfly.mp4',
+                          'http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index.m3u8',
                         );
                       });
                     },
                     child: new Padding(
-                      child: new Text("Video 1"),
+                      child: new Text("RÚV"),
                       padding: new EdgeInsets.symmetric(vertical: 16.0),
                     ),
                   ),
@@ -91,13 +91,13 @@ class _ChewieDemoState extends State<ChewieDemo> {
                     onPressed: () {
                       setState(() {
                         _controller = new VideoPlayerController.network(
-                          'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_20mb.mp4',
+                          'http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv2/index.m3u8',
                         );
                       });
                     },
                     child: new Padding(
                       padding: new EdgeInsets.symmetric(vertical: 16.0),
-                      child: new Text("Video 2"),
+                      child: new Text("RÚV 2"),
                     ),
                   ),
                 )
