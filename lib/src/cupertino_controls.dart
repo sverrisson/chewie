@@ -280,12 +280,12 @@ class _CupertinoControlsState extends State<CupertinoControls> {
         _latestValue != null ? _latestValue.position : new Duration(seconds: 0);
 
     return new Padding(
-      padding: new EdgeInsets.only(right: 12.0),
+      padding: new EdgeInsets.only(right: 11.0),
       child: new Text(
         formatDuration(position),
         style: new TextStyle(
           color: iconColor,
-          fontSize: 12.0,
+          fontSize: 11.0,
         ),
       ),
     );
@@ -297,10 +297,10 @@ class _CupertinoControlsState extends State<CupertinoControls> {
         : new Duration(seconds: 0);
 
     return new Padding(
-      padding: new EdgeInsets.only(right: 12.0),
+      padding: new EdgeInsets.only(right: 11.0),
       child: new Text(
         '-${formatDuration(position)}',
-        style: new TextStyle(color: iconColor, fontSize: 12.0),
+        style: new TextStyle(color: iconColor, fontSize: 11.0),
       ),
     );
   }
