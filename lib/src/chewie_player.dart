@@ -182,8 +182,17 @@ class _ChewiePlayerState extends State<Chewie> {
 
   double _calculateAspectRatio(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final width = size.width;
-    final height = size.height;
+    var width = size.width;
+    var height = size.height;
+
+    // Halda 16/9 ratio
+    if (width / height > 16 / 9) {
+      width = 16 / 9 * height;
+      print("Player width: $width");
+    } else {
+      height = 9 / 16 * width;
+      print("Player height: $height");
+    }
 
     return width > height ? width / height : height / width;
   }
