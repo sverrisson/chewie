@@ -106,7 +106,7 @@ class _ChewiePlayerState extends State<Chewie> {
           onExpandCollapse: () =>
               new Future<dynamic>.value(Navigator.of(context).pop()),
           aspectRatio: widget.aspectRatio ?? _calculateAspectRatio(context),
-          fullScreen: true,
+          fullScreen: false,
           cupertinoProgressColors: widget.cupertinoProgressColors,
           materialProgressColors: widget.materialProgressColors,
         ),
