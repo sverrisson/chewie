@@ -10,8 +10,7 @@ environment:
 dependencies:
   open_iconic_flutter: ">=0.3.0"
   video_player:
-    git:
-      url: https://github.com/sverrisson/plugins.git
+    path: /Users/sverrisson/Documents/Vinna/plugins/packages/video_player/
 
   flutter:
     sdk: flutter
