@@ -145,11 +145,11 @@ class _ChewiePlayerState extends State<Chewie> {
   void didUpdateWidget(Chewie oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget.controller.dataSource != _controller.dataSource) {
-      _controller.dispose();
-      _controller = widget.controller;
-      _initialize();
-    }
+    // if (widget.controller.dataSource != _controller.dataSource) {
+    //   _controller.dispose();
+    //   _controller = widget.controller;
+    //   _initialize();
+    // }
   }
 
   Future<dynamic> _pushFullScreenWidget(BuildContext context) async {
