@@ -60,9 +60,7 @@ class Chewie extends StatefulWidget {
     this.materialProgressColors,
     this.placeholder,
     this.showControls = true,
-  })  : assert(controller != null,
-            'You must provide a controller to play a video'),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

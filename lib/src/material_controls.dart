@@ -229,13 +229,14 @@ class _MaterialControlsState extends State<MaterialControls> {
     final duration = _latestValue != null && _latestValue.duration != null
         ? _latestValue.duration
         : Duration.zero;
+    final bool live = _latestValue != null ? _latestValue.isCurrentWindowDynamic : false;
 
     return new Padding(
       padding: new EdgeInsets.only(right: 24.0),
       child: new Text(
         '${formatDuration(position)} / ${formatDuration(duration)}',
         style: new TextStyle(
-          fontSize: 14.0,
+          fontSize: 10.0,
         ),
       ),
     );

@@ -285,7 +285,7 @@ class _CupertinoControlsState extends State<CupertinoControls> {
         formatDuration(position),
         style: new TextStyle(
           color: iconColor,
-          fontSize: 11.0,
+          fontSize: 10.0,
         ),
       ),
     );
@@ -300,7 +300,7 @@ class _CupertinoControlsState extends State<CupertinoControls> {
       padding: new EdgeInsets.only(right: 11.0),
       child: new Text(
         '-${formatDuration(position)}',
-        style: new TextStyle(color: iconColor, fontSize: 11.0),
+        style: new TextStyle(color: iconColor, fontSize: 10.0),
       ),
     );
   }

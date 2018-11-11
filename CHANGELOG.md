@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.2
+
+  * Fix phones not 16 / 9 aspect ratio.
+  * Fix text size to large.
+  * Fix live video.
+
 ## 0.6.1
 
   * Fix time formatting
