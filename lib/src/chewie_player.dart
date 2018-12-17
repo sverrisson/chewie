@@ -5,6 +5,7 @@ import 'package:chewie/src/player_with_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:screen/screen.dart';
 import 'package:video_player/video_player.dart';
 
 /// A Video Player with Material and Cupertino skins.
@@ -48,6 +49,13 @@ class Chewie extends StatefulWidget {
   /// or played.
   final Widget placeholder;
 
+  /// Defines if the player will start in fullscreen when play is pressed
+  final bool fullScreenByDefault;
+   /// Defines if the player will sleep in fullscreen or not
+  final bool allowedScreenSleep;
+   /// Defines if the controls should be for live stream video
+  final bool isLive;
+
   Chewie(
     this.controller, {
     Key key,
@@ -56,10 +64,13 @@ class Chewie extends StatefulWidget {
     this.autoPlay = false,
     this.startAt,
     this.looping = false,
+    this.fullScreenByDefault = false,
     this.cupertinoProgressColors,
     this.materialProgressColors,
     this.placeholder,
     this.showControls = true,
+    this.allowedScreenSleep = true,
+    this.isLive = false,
   }) : super(key: key);
 
   @override
@@ -70,6 +81,7 @@ class Chewie extends StatefulWidget {
 
 class _ChewiePlayerState extends State<Chewie> {
   VideoPlayerController _controller;
+  bool _isFullScreen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +94,7 @@ class _ChewiePlayerState extends State<Chewie> {
       placeholder: widget.placeholder,
       autoPlay: widget.autoPlay,
       showControls: widget.showControls,
+      isLive: widget.isLive,
     );
   }
 
@@ -105,6 +118,7 @@ class _ChewiePlayerState extends State<Chewie> {
               new Future<dynamic>.value(Navigator.of(context).pop()),
           aspectRatio: widget.aspectRatio ?? _calculateAspectRatio(context),
           fullScreen: false,
+          isLive: widget.isLive,
           cupertinoProgressColors: widget.cupertinoProgressColors,
           materialProgressColors: widget.materialProgressColors,
         ),
@@ -133,11 +147,24 @@ class _ChewiePlayerState extends State<Chewie> {
     }
 
     if (widget.autoPlay) {
+      if (widget.fullScreenByDefault) {
+        _isFullScreen = true;
+        await _pushFullScreenWidget(context);
+      }
       await _controller.play();
     }
 
     if (widget.startAt != null) {
       await _controller.seekTo(widget.startAt);
+    }
+
+    if (widget.fullScreenByDefault) {
+      widget.controller.addListener(() async {
+        if (await widget.controller.value.isPlaying && !_isFullScreen) {
+          _isFullScreen = true;
+          await _pushFullScreenWidget(context);
+        }
+      });
     }
   }
 
@@ -148,6 +175,7 @@ class _ChewiePlayerState extends State<Chewie> {
     // if (widget.controller.dataSource != _controller.dataSource) {
     //   _controller.dispose();
     //   _controller = widget.controller;
+    // _isFullScreen = false;
     //   _initialize();
     // }
   }
@@ -167,7 +195,16 @@ class _ChewiePlayerState extends State<Chewie> {
       ]);
     }
 
+    if (!widget.allowedScreenSleep) {
+      Screen.keepOn(true);
+    }
+
     await Navigator.of(context).push(route);
+
+    bool isKeptOn = await Screen.isKeptOn;
+    if (isKeptOn) {
+      Screen.keepOn(false);
+    }
 
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setPreferredOrientations([

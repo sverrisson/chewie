@@ -18,6 +18,7 @@ class PlayerWithControls extends StatefulWidget {
   final double aspectRatio;
   final bool autoPlay;
   final bool showControls;
+  final bool isLive;
 
   PlayerWithControls({
     Key key,
@@ -30,6 +31,7 @@ class PlayerWithControls extends StatefulWidget {
     this.materialProgressColors,
     this.placeholder,
     this.autoPlay,
+    this.isLive = false,
   }) : super(key: key);
 
   @override
@@ -46,13 +48,10 @@ class _VideoPlayerWithControlsState extends State<PlayerWithControls> {
     return new Center(
       child: new Container(
         width: MediaQuery.of(context).size.width,
-        child: widget.fullScreen &&
-                MediaQuery.of(context).orientation == Orientation.landscape
-            ? _buildPlayerWithControls(controller, context)
-            : new AspectRatio(
-                aspectRatio: widget.aspectRatio,
-                child: _buildPlayerWithControls(controller, context),
-              ),
+        child: AspectRatio(
+          aspectRatio: widget.aspectRatio,
+          child: _buildPlayerWithControls(controller, context),
+        ),
       ),
     );
   }
@@ -66,14 +65,10 @@ class _VideoPlayerWithControlsState extends State<PlayerWithControls> {
           new Center(
             child: new Hero(
               tag: controller,
-              child: widget.fullScreen &&
-                      MediaQuery.of(context).orientation ==
-                          Orientation.landscape
-                  ? new VideoPlayer(controller)
-                  : new AspectRatio(
-                      aspectRatio: widget.aspectRatio,
-                      child: new VideoPlayer(controller),
-                    ),
+              child: AspectRatio(
+                aspectRatio: widget.aspectRatio,
+                child: VideoPlayer(controller),
+              ),
             ),
           ),
           _buildControls(context, controller),
@@ -94,6 +89,7 @@ class _VideoPlayerWithControlsState extends State<PlayerWithControls> {
                 fullScreen: widget.fullScreen,
                 progressColors: widget.materialProgressColors,
                 autoPlay: widget.autoPlay,
+                isLive: widget.isLive,
               )
             : new CupertinoControls(
                 backgroundColor: new Color.fromRGBO(41, 41, 41, 0.7),
@@ -103,6 +99,7 @@ class _VideoPlayerWithControlsState extends State<PlayerWithControls> {
                 fullScreen: widget.fullScreen,
                 progressColors: widget.cupertinoProgressColors,
                 autoPlay: widget.autoPlay,
+                isLive: widget.isLive,
               )
         : new Container();
   }
